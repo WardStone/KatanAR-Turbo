@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ManipulationSystem
   - anchor
+  - target
   layers:
   - Default
   - TransparentFX

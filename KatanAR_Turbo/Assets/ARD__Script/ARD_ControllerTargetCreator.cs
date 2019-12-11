@@ -71,51 +71,61 @@
 
             if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
             {
-                // Use hit pose and camera pose pour vérifier qui ne touche pas l'arrière de la surface (dans ce cas pas d'ancre à spawn)
-                if ((hit.Trackable is DetectedPlane) && Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
+                //creation de la room et génération des cibles
+                if (!isRoomCreate)
                 {
-                    Debug.Log("Hit at back of the current DetectedPlane");
-                }
-                else
-                {
-                    // instancie un prefab
-                    GameObject prefab;
-
-                    if (hit.Trackable is DetectedPlane)
+                    // Use hit pose and camera pose pour vérifier qui ne touche pas l'arrière de la surface (dans ce cas pas d'ancre à spawn)
+                    if ((hit.Trackable is DetectedPlane) && Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
                     {
-                        DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
-                        if (detectedPlane.PlaneType == DetectedPlaneType.HorizontalUpwardFacing)
-                        {
-                            if (!isRoomCreate)
-                            {
-                                prefab = GameAreaRoom;
+                        Debug.Log("Hit at back of the current DetectedPlane");
+                    }
+                    else
+                    {
+                        // instancie un prefab
+                        GameObject prefab;
 
-                                isRoomCreate = true;
+                        if (hit.Trackable is DetectedPlane)
+                        {
+                            DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
+                            if (detectedPlane.PlaneType == DetectedPlaneType.HorizontalUpwardFacing)
+                            {
+                                if (!isRoomCreate)
+                                {
+                                    prefab = GameAreaRoom;
+
+                                    isRoomCreate = true;
+                                }
+                                else
+                                {
+                                    prefab = GameObjectHorizontalPlanePrefab;
+                                }
                             }
                             else
                             {
-                                prefab = GameObjectHorizontalPlanePrefab;
+                                prefab = GameObjectVerticalPlanePrefab;
                             }
                         }
                         else
                         {
-                            prefab = GameObjectVerticalPlanePrefab;
+                            prefab = GameObjectHorizontalPlanePrefab;
                         }
+
+                        // Instancie le prefab
+                        var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+
+                        // Create an anchor to allow ARCore to track the hitpoint as understanding of
+                        // the physical world evolves.
+                        var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+                        // Make game object a child of the anchor.
+                        gameObject.transform.parent = anchor.transform;
                     }
-                    else
-                    {
-                        prefab = GameObjectHorizontalPlanePrefab;
-                    }
+                }
+                else
+                {
 
-                    // Instancie le prefab
-                    var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
 
-                    // Create an anchor to allow ARCore to track the hitpoint as understanding of
-                    // the physical world evolves.
-                    var anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
-                    // Make game object a child of the anchor.
-                    gameObject.transform.parent = anchor.transform;
                 }
             }
         }

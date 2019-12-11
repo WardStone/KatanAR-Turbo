@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ARD_TargetFacePlayer : MonoBehaviour
 {
-     public Transform cible = default;
+     public Transform cible = null;
 
      public GameObject player = default;
      public Transform playerLocalisation = default;
