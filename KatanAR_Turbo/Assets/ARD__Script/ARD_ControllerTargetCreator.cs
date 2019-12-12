@@ -74,6 +74,7 @@
                     if ((hit.Trackable is DetectedPlane) && Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
                     {
                         Debug.Log("Hit at back of the current DetectedPlane");
+<<<<<<< HEAD
                     }
                     else
                     {
@@ -109,6 +110,55 @@
                 //changement de phase
                 else
                 {
+=======
+                    }
+                    else
+                    {
+                        // instancie un prefab
+                        GameObject prefab;
+
+                        if (hit.Trackable is DetectedPlane)
+                        {
+                            DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
+                            if (detectedPlane.PlaneType == DetectedPlaneType.HorizontalUpwardFacing)
+                            {
+                                if (!isRoomCreate)
+                                {
+                                    prefab = GameAreaRoom;
+
+                                    isRoomCreate = true;
+                                }
+                                else
+                                {
+                                    prefab = GameObjectHorizontalPlanePrefab;
+                                }
+                            }
+                            else
+                            {
+                                prefab = GameObjectVerticalPlanePrefab;
+                            }
+                        }
+                        else
+                        {
+                            prefab = GameObjectHorizontalPlanePrefab;
+                        }
+
+                        // Instancie le prefab
+                        var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+
+                        // Create an anchor to allow ARCore to track the hitpoint as understanding of
+                        // the physical world evolves.
+                        var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+                        // Make game object a child of the anchor.
+                        gameObject.transform.parent = anchor.transform;
+                    }
+                }
+                else
+                {
+
+
+>>>>>>> ARD_ShurikenPlanteDansCible
 
                 }
             }
