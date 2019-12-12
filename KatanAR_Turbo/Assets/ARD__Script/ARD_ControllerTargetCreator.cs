@@ -19,21 +19,17 @@
         #region InOriginal Variable (modified)
         public Camera FirstPersonCamera;
 
-        public GameObject GameObjectHorizontalPlanePrefab;
-
-        public GameObject GameObjectVerticalPlanePrefab;
-
-        public GameObject GameObjectPointPrefab;
-
         private bool m_IsQuitting = false;
         #endregion
 
         [Space (10)]
         [Header("Ajout")]
 
-        public GameObject GameAreaRoom = default;
+        public int level = 0;
+        public GameObject[] GameAreaRoom = default;
 
-        public bool isRoomCreate = false;
+        [SerializeField]
+        bool isRoomCreate = false;
 
         public void Awake()
         {
@@ -91,24 +87,13 @@
                             {
                                 if (!isRoomCreate)
                                 {
-                                    prefab = GameAreaRoom;
+                                    prefab = GameAreaRoom[level];
 
                                     isRoomCreate = true;
-                                }
-                                else
-                                {
-                                    prefab = GameObjectHorizontalPlanePrefab;
-                                }
-                            }
-                            else
-                            {
-                                prefab = GameObjectVerticalPlanePrefab;
-                            }
-                        }
-                        else
-                        {
-                            prefab = GameObjectHorizontalPlanePrefab;
-                        }
+
+                                }else { prefab = null; }
+                            } else { prefab = null; }
+                        } else { prefab = null; }
 
                         // Instancie le prefab
                         var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
@@ -121,10 +106,9 @@
                         gameObject.transform.parent = anchor.transform;
                     }
                 }
+                //changement de phase
                 else
                 {
-
-
 
                 }
             }

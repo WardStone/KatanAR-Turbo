@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 374486494}
   - component: {fileID: 374486493}
   m_Layer: 0
-  m_Name: KatanAR Controller
+  m_Name: Level Generator Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,14 +266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstPersonCamera: {fileID: 430724581}
-  GameObjectHorizontalPlanePrefab: {fileID: 2901850315521871187, guid: 0fdbe2d750025cd4f9fdeae74b06fcb0,
-    type: 3}
-  GameObjectVerticalPlanePrefab: {fileID: 2901850315521871187, guid: 0fdbe2d750025cd4f9fdeae74b06fcb0,
-    type: 3}
-  GameObjectPointPrefab: {fileID: 2901850315521871187, guid: 0fdbe2d750025cd4f9fdeae74b06fcb0,
-    type: 3}
-  GameAreaRoom: {fileID: 5930390765395798347, guid: b246cc4bbbcc64447b961dbb4173f9ee,
-    type: 3}
+  level: 0
+  GameAreaRoom:
+  - {fileID: 5279864468538044924, guid: 2efece04b956bc14c9d858ee0bb059a0, type: 3}
   isRoomCreate: 0
 --- !u!4 &374486494
 Transform:
