@@ -34,6 +34,8 @@ public class ShurikenLauncherController : MonoBehaviour
 
     float slideTimer;
 
+    public bool testingInUnity;
+
     /// <summary>
     /// The rotation in degrees need to apply to prefab when it is placed.
     /// </summary>
@@ -57,34 +59,45 @@ public class ShurikenLauncherController : MonoBehaviour
             return;
         }
 
-        //ShurikenLaunchWithSlide
-        if (touch.phase == TouchPhase.Began && touchHasBegun == false)
+        if (!testingInUnity)
         {
-            touchHasBegun = true;
-            touchStartPosition = touch.position;
-            slideTimer = baseSlideTimer;
-        }
-
-        if(touchHasBegun)
-        {
-            if(touch.phase == TouchPhase.Moved)
+            //ShurikenLaunchWithSlide
+            if (touch.phase == TouchPhase.Began && touchHasBegun == false)
             {
-                touchDirection = touch.position - touchStartPosition;
-                Debug.Log(touchDirection);
-                slideTimer -= Time.deltaTime;
+                touchHasBegun = true;
+                touchStartPosition = touch.position;
+                slideTimer = baseSlideTimer;
             }
-            
-            if(touch.phase == TouchPhase.Ended)
+
+            if (touchHasBegun)
             {
-                if(slideTimer >= 0 && touchDirection.y > 300)
+                if (touch.phase == TouchPhase.Moved)
                 {
-                    ShurikenLaunch();
+                    touchDirection = touch.position - touchStartPosition;
+                    Debug.Log(touchDirection);
+                    slideTimer -= Time.deltaTime;
                 }
 
-                touchHasBegun = false;
-            }
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    if (slideTimer >= 0 && touchDirection.y > 300)
+                    {
+                        ShurikenLaunch();
+                    }
 
+                    touchHasBegun = false;
+                }
+
+            }
         }
+        else
+        {
+            if(touch.phase == TouchPhase.Began)
+            {
+                ShurikenLaunch();
+            }
+        }
+        
         
 
     }
