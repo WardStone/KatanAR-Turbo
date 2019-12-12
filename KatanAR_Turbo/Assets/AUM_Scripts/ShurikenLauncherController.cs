@@ -34,6 +34,12 @@ public class ShurikenLauncherController : MonoBehaviour
 
     float slideTimer;
 
+    public GameObject shurikenContainer = default;
+
+    [Range(0,2)]
+    public float speed;
+
+
     public bool testingInUnity;
 
     /// <summary>
@@ -104,7 +110,7 @@ public class ShurikenLauncherController : MonoBehaviour
 
     private void ShurikenLaunch()
     {
-        GameObject shuriken = Instantiate(ShurikenPrefab, FirstPersonCamera.transform.position, FirstPersonCamera.transform.rotation);
+        GameObject shuriken = Instantiate(ShurikenPrefab, FirstPersonCamera.transform.position, FirstPersonCamera.transform.rotation,this.transform);
         shuriken.transform.position = FirstPersonCamera.transform.position + FirstPersonCamera.transform.forward * distanceInstantiate;
 
         shuriken.transform.position = new Vector3(shuriken.transform.position.x, shuriken.transform.position.y - 0.3f, shuriken.transform.position.z);
@@ -113,7 +119,7 @@ public class ShurikenLauncherController : MonoBehaviour
 
         shuriken.GetComponent<ShurikenController>().rigibody.velocity = new Vector3(
             shuriken.GetComponent<ShurikenController>().rigibody.velocity.x,
-            shuriken.GetComponent<ShurikenController>().rigibody.velocity.y + 2f,
+            shuriken.GetComponent<ShurikenController>().rigibody.velocity.y + speed,
             shuriken.GetComponent<ShurikenController>().rigibody.velocity.z);
     }
 
