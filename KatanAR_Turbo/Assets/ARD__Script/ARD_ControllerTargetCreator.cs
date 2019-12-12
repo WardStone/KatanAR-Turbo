@@ -19,21 +19,19 @@
         #region InOriginal Variable (modified)
         public Camera FirstPersonCamera;
 
-        public GameObject GameObjectHorizontalPlanePrefab;
-
-        public GameObject GameObjectVerticalPlanePrefab;
-
-        public GameObject GameObjectPointPrefab;
-
         private bool m_IsQuitting = false;
         #endregion
 
         [Space (10)]
         [Header("Ajout")]
 
-        public GameObject GameAreaRoom = default;
+        public int level = 0;
+        public GameObject[] GameAreaRoom = default;
+        public ShurikenLauncherController shurikenLauncherController = default;
+        GameObject shurikenPhase = default;
 
-        public bool isRoomCreate = false;
+        [SerializeField]
+        bool isRoomCreate = false;
 
         public void Awake()
         {
@@ -42,6 +40,13 @@
             // Note, Application.targetFrameRate is ignored when QualitySettings.vSyncCount != 0.
             Application.targetFrameRate = 60;
             #endregion
+        }
+
+        private void Start()
+        {
+            shurikenLauncherController = GetComponent<ShurikenLauncherController>();
+            shurikenPhase = shurikenLauncherController.gameObject;
+            shurikenPhase.SetActive(false);
         }
 
         public void Update()
@@ -71,51 +76,50 @@
 
             if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
             {
-                // Use hit pose and camera pose pour vérifier qui ne touche pas l'arrière de la surface (dans ce cas pas d'ancre à spawn)
-                if ((hit.Trackable is DetectedPlane) && Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
+                //creation de la room et génération des cibles
+                if (!isRoomCreate)
                 {
-                    Debug.Log("Hit at back of the current DetectedPlane");
-                }
-                else
-                {
-                    // instancie un prefab
-                    GameObject prefab;
-
-                    if (hit.Trackable is DetectedPlane)
+                    // Use hit pose and camera pose pour vérifier qui ne touche pas l'arrière de la surface (dans ce cas pas d'ancre à spawn)
+                    if ((hit.Trackable is DetectedPlane) && Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
                     {
-                        DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
-                        if (detectedPlane.PlaneType == DetectedPlaneType.HorizontalUpwardFacing)
-                        {
-                            if (!isRoomCreate)
-                            {
-                                prefab = GameAreaRoom;
-
-                                isRoomCreate = true;
-                            }
-                            else
-                            {
-                                prefab = GameObjectHorizontalPlanePrefab;
-                            }
-                        }
-                        else
-                        {
-                            prefab = GameObjectVerticalPlanePrefab;
-                        }
+                        Debug.Log("Hit at back of the current DetectedPlane");
                     }
                     else
                     {
-                        prefab = GameObjectHorizontalPlanePrefab;
+                        // instancie un prefab
+                        GameObject prefab;
+
+                        if (hit.Trackable is DetectedPlane)
+                        {
+                            DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
+                            if (detectedPlane.PlaneType == DetectedPlaneType.HorizontalUpwardFacing)
+                            {
+                                if (!isRoomCreate)
+                                {
+                                    prefab = GameAreaRoom[level];
+
+                                    isRoomCreate = true;
+
+                                }else { prefab = null; }
+                            } else { prefab = null; }
+                        } else { prefab = null; }
+
+                        // Instancie le prefab
+                        var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+
+                        // Create an anchor to allow ARCore to track the hitpoint as understanding of
+                        // the physical world evolves.
+                        var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+                        // Make game object a child of the anchor.
+                        gameObject.transform.parent = anchor.transform;
                     }
+                }
+                //changement de phase
+                else
+                {
+                    shurikenPhase.SetActive(true);
 
-                    // Instancie le prefab
-                    var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
-
-                    // Create an anchor to allow ARCore to track the hitpoint as understanding of
-                    // the physical world evolves.
-                    var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-
-                    // Make game object a child of the anchor.
-                    gameObject.transform.parent = anchor.transform;
                 }
             }
         }

@@ -10896,6 +10896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3877100350191139238}
   - component: {fileID: 5045314463582105785}
+  - component: {fileID: 3631608296691825098}
   m_Layer: 0
   m_Name: ShurikenPivot
   m_TagString: Untagged
@@ -10930,6 +10931,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a9b1286f5764541b757da9d6e7ac4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigibody: {fileID: 0}
+--- !u!114 &3631608296691825098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877100350191139239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d30d8911ec08ee4d96c70e66ca268c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3877100350679974501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10950,7 +10964,7 @@ PrefabInstance:
     - target: {fileID: 6780866266168818151, guid: 28936c2346be76e4c9d6c5626a3837cb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.20679998
+      value: -0.2068
       objectReference: {fileID: 0}
     - target: {fileID: 6780866266168818151, guid: 28936c2346be76e4c9d6c5626a3837cb,
         type: 3}
@@ -10997,11 +11011,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4057015963621912169, guid: 28936c2346be76e4c9d6c5626a3837cb,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3923943968532441823, guid: 28936c2346be76e4c9d6c5626a3837cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11016,6 +11025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057015963621912169, guid: 28936c2346be76e4c9d6c5626a3837cb,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4338205265375362572, guid: 28936c2346be76e4c9d6c5626a3837cb,
         type: 3}
