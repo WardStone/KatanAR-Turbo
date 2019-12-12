@@ -7,6 +7,7 @@ TagManager:
   - ManipulationSystem
   - anchor
   - target
+  - LD limit
   layers:
   - Default
   - TransparentFX

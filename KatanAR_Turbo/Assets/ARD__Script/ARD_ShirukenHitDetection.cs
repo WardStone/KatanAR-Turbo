@@ -13,9 +13,9 @@ public class ARD_ShirukenHitDetection : MonoBehaviour
         Initialisation();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("target"))
+        if (collision.gameObject.CompareTag("target"))
         {
             TheWorld(shurikenBody);
         }
@@ -30,10 +30,7 @@ public class ARD_ShirukenHitDetection : MonoBehaviour
 
     void TheWorld(Rigidbody rb)
     {
-        //je pourrais faire un FreezeAll mais ce ne serait pas marrant
-        rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX;
-        rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationY;
-        rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
 }

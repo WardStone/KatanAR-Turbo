@@ -27,6 +27,8 @@
 
         public int level = 0;
         public GameObject[] GameAreaRoom = default;
+        public ShurikenLauncherController shurikenLauncherController = default;
+        GameObject shurikenPhase = default;
 
         [SerializeField]
         bool isRoomCreate = false;
@@ -38,6 +40,13 @@
             // Note, Application.targetFrameRate is ignored when QualitySettings.vSyncCount != 0.
             Application.targetFrameRate = 60;
             #endregion
+        }
+
+        private void Start()
+        {
+            shurikenLauncherController = GetComponent<ShurikenLauncherController>();
+            shurikenPhase = shurikenLauncherController.gameObject;
+            shurikenPhase.SetActive(false);
         }
 
         public void Update()
@@ -74,7 +83,6 @@
                     if ((hit.Trackable is DetectedPlane) && Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position, hit.Pose.rotation * Vector3.up) < 0)
                     {
                         Debug.Log("Hit at back of the current DetectedPlane");
-<<<<<<< HEAD
                     }
                     else
                     {
@@ -110,55 +118,7 @@
                 //changement de phase
                 else
                 {
-=======
-                    }
-                    else
-                    {
-                        // instancie un prefab
-                        GameObject prefab;
-
-                        if (hit.Trackable is DetectedPlane)
-                        {
-                            DetectedPlane detectedPlane = hit.Trackable as DetectedPlane;
-                            if (detectedPlane.PlaneType == DetectedPlaneType.HorizontalUpwardFacing)
-                            {
-                                if (!isRoomCreate)
-                                {
-                                    prefab = GameAreaRoom;
-
-                                    isRoomCreate = true;
-                                }
-                                else
-                                {
-                                    prefab = GameObjectHorizontalPlanePrefab;
-                                }
-                            }
-                            else
-                            {
-                                prefab = GameObjectVerticalPlanePrefab;
-                            }
-                        }
-                        else
-                        {
-                            prefab = GameObjectHorizontalPlanePrefab;
-                        }
-
-                        // Instancie le prefab
-                        var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
-
-                        // Create an anchor to allow ARCore to track the hitpoint as understanding of
-                        // the physical world evolves.
-                        var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-
-                        // Make game object a child of the anchor.
-                        gameObject.transform.parent = anchor.transform;
-                    }
-                }
-                else
-                {
-
-
->>>>>>> ARD_ShurikenPlanteDansCible
+                    shurikenPhase.SetActive(true);
 
                 }
             }
