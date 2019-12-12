@@ -3,15 +3,31 @@ using GoogleARCore;
 using GoogleARCore.Examples.Common;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 public class GameController : MonoBehaviour
 {
+    public static GameObject messageBar;
+
     private bool m_IsQuitting = false;
+
+    public static GameObject scanningController;
+    public static GameObject observationController;
+    public static GameObject combatController;
+    public static GameObject resultController;
 
     public void Awake()
     {
         // Enable ARCore to target 60fps camera capture frame rate on supported devices.
         // Note, Application.targetFrameRate is ignored when QualitySettings.vSyncCount != 0.
         Application.targetFrameRate = 60;
+
+        messageBar = GameObject.Find("Message Bar");
+
+        scanningController = GameObject.Find("Scanning_Controller");
+        observationController = GameObject.Find("Observation_Controller");
+        combatController = GameObject.Find("Combat_Controller");
+        resultController = GameObject.Find("Result_Controller");
     }
 
     void Update()
@@ -92,6 +108,12 @@ public class GameController : MonoBehaviour
                 toastObject.Call("show");
             }));
         }
+    }
+
+    public static void ActivateGameObject(GameObject gameObject, bool activation)
+    {
+        if(gameObject.activeSelf != activation)
+        gameObject.SetActive(activation);
     }
 
 }
