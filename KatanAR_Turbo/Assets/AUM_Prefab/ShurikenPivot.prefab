@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 36270366072308049}
   - component: {fileID: 5356277214582786313}
+  - component: {fileID: 3169484355814383820}
   m_Layer: 0
   m_Name: ShurikenPivot
   m_TagString: shuriken
