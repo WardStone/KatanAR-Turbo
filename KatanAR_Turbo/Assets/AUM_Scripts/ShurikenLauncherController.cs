@@ -22,7 +22,7 @@ public class ShurikenLauncherController : MonoBehaviour
 
     float distanceInstantiate = 0.2f;
 
-    float launchSpeed = 10f;
+    public float launchSpeed = 10f;
 
     bool touchHasBegun = false;
 
@@ -35,9 +35,6 @@ public class ShurikenLauncherController : MonoBehaviour
     float slideTimer;
 
     public GameObject shurikenContainer = default;
-
-    [Range(0,2)]
-    public float speed;
 
 
     public bool testingInUnity;
@@ -119,7 +116,7 @@ public class ShurikenLauncherController : MonoBehaviour
 
         shuriken.GetComponent<ShurikenController>().rigibody.velocity = new Vector3(
             shuriken.GetComponent<ShurikenController>().rigibody.velocity.x,
-            shuriken.GetComponent<ShurikenController>().rigibody.velocity.y + speed,
+            shuriken.GetComponent<ShurikenController>().rigibody.velocity.y + 3,
             shuriken.GetComponent<ShurikenController>().rigibody.velocity.z);
     }
 
