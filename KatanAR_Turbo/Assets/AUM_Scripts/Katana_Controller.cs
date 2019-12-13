@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Result_Controller : MonoBehaviour
+public class Katana_Controller : MonoBehaviour
 {
+
+    GameObject katanaPrefab;
 
     private void OnEnable()
     {
-        if(GameController.startPassed)
-        {
-            GameController.ActivateGameObject(GameController.combatController, false);
-            GameController.ActivateGameObject(GameController.observationController, false);
-        }
+        GameController.ActivateGameObject(GameController.shurikenController, true);
 
     }
 

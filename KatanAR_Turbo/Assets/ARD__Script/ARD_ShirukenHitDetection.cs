@@ -19,6 +19,11 @@ public class ARD_ShirukenHitDetection : MonoBehaviour
         {
             TheWorld(shurikenBody);
         }
+
+        if(collision.gameObject.transform.tag == ("LD limit"))
+        {
+            Destroy(GetComponentInParent<Transform>().gameObject);
+        }
     }
 
     void Initialisation()

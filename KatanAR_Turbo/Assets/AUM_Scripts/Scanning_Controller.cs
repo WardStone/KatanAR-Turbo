@@ -9,7 +9,23 @@ public class Scanning_Controller : MonoBehaviour
 
     private void OnEnable()
     {
+        if(GameController.startPassed)
+        {
+            GameController.ActivateGameObject(GameController.menuController, false);
+            GameController.ActivateGameObject(GameController.observationController, false);
+            GameController.ActivateGameObject(GameController.combatController, false);
+            GameController.ActivateGameObject(GameController.resultController, false);
+        }
+
+    }
+
+    private void Start()
+    {
         StartCoroutine(WriteMessage("KatanARMan! Scan une surface puis mets-y un point"));
+
+        GameController.observationCanvas.SetActive(false);
+
+        GameController.ActivateGameObject(GameController.menuController, false);
         GameController.ActivateGameObject(GameController.observationController, false);
         GameController.ActivateGameObject(GameController.combatController, false);
         GameController.ActivateGameObject(GameController.resultController, false);
@@ -26,7 +42,7 @@ public class Scanning_Controller : MonoBehaviour
         GameController.messageBar.SetActive(true);
         GameController.messageBar.GetComponentInChildren<Text>().text = message;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         GameController.messageBar.SetActive(false);
     }

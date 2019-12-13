@@ -2,7 +2,6 @@
 using GoogleARCore;
 using GoogleARCore.Examples.Common;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -11,10 +10,17 @@ public class GameController : MonoBehaviour
 
     private bool m_IsQuitting = false;
 
+    public static bool startPassed = false;
+
     public static GameObject scanningController;
+    public static GameObject menuController;
     public static GameObject observationController;
     public static GameObject combatController;
+    public static GameObject shurikenController;
+    public static GameObject katanaController;
     public static GameObject resultController;
+
+    public static GameObject observationCanvas;
 
     public void Awake()
     {
@@ -25,9 +31,19 @@ public class GameController : MonoBehaviour
         messageBar = GameObject.Find("Message Bar");
 
         scanningController = GameObject.Find("Scanning_Controller");
+        menuController = GameObject.Find("Menu_Controller");
         observationController = GameObject.Find("Observation_Controller");
         combatController = GameObject.Find("Combat_Controller");
+        shurikenController = GameObject.Find("Shuriken_Controller");
+        katanaController = GameObject.Find("Katana_Controller");
         resultController = GameObject.Find("Result_Controller");
+
+        observationCanvas = GameObject.Find("ObservationCanvas");
+    }
+
+    private void Start()
+    {
+        startPassed = true;
     }
 
     void Update()
@@ -112,8 +128,9 @@ public class GameController : MonoBehaviour
 
     public static void ActivateGameObject(GameObject gameObject, bool activation)
     {
-        if(gameObject.activeSelf != activation)
-        gameObject.SetActive(activation);
+        if(gameObject != null)
+            if(gameObject.activeSelf != activation)
+                gameObject.SetActive(activation);
     }
 
 }

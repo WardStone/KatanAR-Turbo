@@ -45,8 +45,8 @@
         private void Start()
         {
             shurikenLauncherController = GetComponent<ShurikenLauncherController>();
-            shurikenPhase = shurikenLauncherController.gameObject;
-            shurikenPhase.SetActive(false);
+            //shurikenPhase = shurikenLauncherController.gameObject;
+            //shurikenPhase.SetActive(false);
         }
 
         public void Update()
@@ -96,9 +96,13 @@
                             {
                                 if (!isRoomCreate)
                                 {
+
+
                                     prefab = GameAreaRoom[level];
 
                                     isRoomCreate = true;
+
+                                    
 
                                 }else { prefab = null; }
                             } else { prefab = null; }
@@ -119,10 +123,16 @@
                 else
                 {
                     shurikenPhase.SetActive(true);
-
                 }
             }
+            
+            if(isRoomCreate)
+            {
+                GameController.ActivateGameObject(GameController.observationController, true);
+            }
         }
+
+
 
         #region InOriginal Fonctions (not modified)
 

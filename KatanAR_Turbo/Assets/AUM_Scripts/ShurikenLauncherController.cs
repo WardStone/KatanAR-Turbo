@@ -42,6 +42,11 @@ public class ShurikenLauncherController : MonoBehaviour
     private const float k_PrefabRotation = 180.0f;
 
 
+    private void OnEnable()
+    {
+        GameController.ActivateGameObject(GameController.katanaController, true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +56,13 @@ public class ShurikenLauncherController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.touches.Length == 0)
+        {
+            return;
+        }
+
+
+
         Touch touch = Input.GetTouch(0);
 
         // Should not handle input if the player is pointing on UI.
@@ -105,6 +117,9 @@ public class ShurikenLauncherController : MonoBehaviour
     private void ShurikenLaunch()
     {
         GameObject shuriken = Instantiate(ShurikenPrefab, FirstPersonCamera.transform.position, FirstPersonCamera.transform.rotation);
+
+        shuriken.transform.SetParent(GameObject.Find("Shurikens").transform, true);
+
         shuriken.transform.position = FirstPersonCamera.transform.position + FirstPersonCamera.transform.forward * distanceInstantiate;
 
         shuriken.transform.position = new Vector3(shuriken.transform.position.x, shuriken.transform.position.y - 0.3f, shuriken.transform.position.z);
@@ -113,7 +128,7 @@ public class ShurikenLauncherController : MonoBehaviour
 
         shuriken.GetComponent<ShurikenController>().rigibody.velocity = new Vector3(
             shuriken.GetComponent<ShurikenController>().rigibody.velocity.x,
-            shuriken.GetComponent<ShurikenController>().rigibody.velocity.y + 2f,
+            shuriken.GetComponent<ShurikenController>().rigibody.velocity.y + 0.5f,
             shuriken.GetComponent<ShurikenController>().rigibody.velocity.z);
     }
 

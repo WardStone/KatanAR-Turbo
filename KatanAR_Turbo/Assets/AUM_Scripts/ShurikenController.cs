@@ -21,9 +21,13 @@ public class ShurikenController : MonoBehaviour
 
     }
 
-    public void StopMoving()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if(collision.gameObject.transform.tag == "LD limit")
+        {
+            Destroy(this);
+        }
     }
+
 
 }
