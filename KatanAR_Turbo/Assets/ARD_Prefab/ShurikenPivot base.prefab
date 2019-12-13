@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2042036724612046036}
   - component: {fileID: 8042427738995381707}
-  - component: {fileID: 2017312671620111544}
   m_Layer: 0
   m_Name: ShurikenPivot base
-  m_TagString: Untagged
+  m_TagString: shuriken
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,20 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigibody: {fileID: 0}
---- !u!114 &2017312671620111544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042036724612046037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d30d8911ec08ee4d96c70e66ca268c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trail: {fileID: 0}
-  rotationSpeed: 10
 --- !u!1001 &5352341662699114613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71,6 +56,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shuriken Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032761479522275886, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_TagString
+      value: shuriken
       objectReference: {fileID: 0}
     - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
         type: 3}
