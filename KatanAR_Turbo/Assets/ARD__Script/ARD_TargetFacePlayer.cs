@@ -12,6 +12,8 @@ public class ARD_TargetFacePlayer : MonoBehaviour
     Quaternion targetRotation = default;
     Vector3 targetDirection = default;
 
+    bool isTouched;
+
     private void Start()
     {
         InitiateVariables();
@@ -19,7 +21,20 @@ public class ARD_TargetFacePlayer : MonoBehaviour
 
     void Update()
     {
-        FaceIt(playerLocalisation);
+        if (!isTouched)
+        {
+            FaceIt(playerLocalisation);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("shuriken"))
+        {
+            isTouched = true;
+            FindObjectOfType<ARD_SoundManager>().Play("Kill");
+        }
+
     }
 
     void InitiateVariables()

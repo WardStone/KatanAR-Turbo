@@ -18,6 +18,7 @@ namespace GoogleARCore.Examples.HelloAR
             if (collision.gameObject.CompareTag("shuriken"))
             {
                 levelManager.level++;
+                FindObjectOfType<ARD_SoundManager>().Play("PlayHit");
                 GameController.ActivateGameObject(GameController.observationController, true);
             }
         }
