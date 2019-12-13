@@ -66,10 +66,10 @@ public class Combat_Controller : MonoBehaviour
     {
         combatCanvas.SetActive(false);
 
-        foreach (GameObject botteDeFoin in bottesDeFoin)
+        /*foreach (GameObject botteDeFoin in bottesDeFoin)
         {
             botteDeFoin.SetActive(true);
-        }
+        }*/
     }
 
     private void Awake()
