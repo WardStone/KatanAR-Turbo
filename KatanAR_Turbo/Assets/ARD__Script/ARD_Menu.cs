@@ -1,30 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ARD_Menu : MonoBehaviour
+namespace GoogleARCore.Examples.HelloAR
 {
-    Transform text = default;
-    BoxCollider textCollider = default;
-
-    void Start()
+    public class ARD_Menu : MonoBehaviour
     {
-        Initialisation();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("shuriken"))
+        Transform text = default;
+        BoxCollider textCollider = default;
+        ARD_ControllerTargetCreator levelManager = default;
+        void Start()
         {
-
+            Initialisation();
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("shuriken"))
+            {
+                levelManager.level++;
+            }
+        }
+
+        void Initialisation()
+        {
+            text = this.transform;
+            textCollider = this.GetComponent<BoxCollider>();
+            levelManager = GetComponent<ARD_ControllerTargetCreator>();
+        }
+
     }
-
-    void Initialisation()
-    {
-        text = this.transform;
-        textCollider = this.GetComponent<BoxCollider>();
-    }
-
-
 }
