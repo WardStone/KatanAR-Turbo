@@ -9,7 +9,7 @@ public class Katana_Controller : MonoBehaviour
 
     private void OnEnable()
     {
-        GameController.ActivateGameObject(GameController.shurikenController, true);
+        GameController.ActivateGameObject(GameController.shurikenController, false);
 
     }
 

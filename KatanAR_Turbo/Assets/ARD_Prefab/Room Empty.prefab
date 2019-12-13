@@ -49,10 +49,9 @@ GameObject:
   - component: {fileID: 6384746493871842506}
   - component: {fileID: 8351675369591253464}
   - component: {fileID: 7075070684688554870}
-  - component: {fileID: 3214629582755728800}
   m_Layer: 0
   m_Name: repere centre
-  m_TagString: RepereCentre
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,19 +130,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3214629582755728800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3001789521353720777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19aebc9f90bd7c48ba025f41cf6b126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelTime: 10
 --- !u!1 &9104806374466271582
 GameObject:
   m_ObjectHideFlags: 0

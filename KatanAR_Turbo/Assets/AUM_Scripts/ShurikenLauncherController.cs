@@ -22,7 +22,7 @@ public class ShurikenLauncherController : MonoBehaviour
 
     float distanceInstantiate = 0.2f;
 
-    float launchSpeed = 10f;
+    public float launchSpeed = 10f;
 
     bool touchHasBegun = false;
 
@@ -33,6 +33,9 @@ public class ShurikenLauncherController : MonoBehaviour
     float baseSlideTimer = 2f;
 
     float slideTimer;
+
+    public GameObject shurikenContainer = default;
+
 
     public bool testingInUnity;
 

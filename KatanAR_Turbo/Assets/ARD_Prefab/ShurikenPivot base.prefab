@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2042036724612046037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2042036724612046036}
+  - component: {fileID: 8042427738995381707}
+  - component: {fileID: 2017312671620111544}
+  m_Layer: 0
+  m_Name: ShurikenPivot base
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2042036724612046036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042036724612046037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.46929, y: -0.6911421, z: -16.117716}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8235136081964789832}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8042427738995381707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042036724612046037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a9b1286f5764541b757da9d6e7ac4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigibody: {fileID: 0}
+--- !u!114 &2017312671620111544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042036724612046037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d30d8911ec08ee4d96c70e66ca268c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trail: {fileID: 0}
+  rotationSpeed: 10
+--- !u!1001 &5352341662699114613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2042036724612046036}
+    m_Modifications:
+    - target: {fileID: 1032761479522275886, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_Name
+      value: Shuriken Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 892683ce173c61648bf7a415a2870627, type: 3}
+--- !u!4 &8235136081964789832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4039239312145326141, guid: 892683ce173c61648bf7a415a2870627,
+    type: 3}
+  m_PrefabInstance: {fileID: 5352341662699114613}
+  m_PrefabAsset: {fileID: 0}

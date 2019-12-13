@@ -20,15 +20,20 @@
         public Camera FirstPersonCamera;
 
         private bool m_IsQuitting = false;
+
         #endregion
 
         [Space (10)]
         [Header("Ajout")]
 
         public int level = 0;
+        [SerializeField] int actualLevel = 0;
+
+        public Vector3 groundAnchor = default;
+        public GameObject actualRoom = default;
         public GameObject[] GameAreaRoom = default;
-        public ShurikenLauncherController shurikenLauncherController = default;
-        GameObject shurikenPhase = default;
+
+        public GameObject combatPhase = default;
 
         [SerializeField]
         bool isRoomCreate = false;
@@ -51,6 +56,18 @@
 
         public void Update()
         {
+            if (actualLevel != level)
+            {
+                //Je prend le parent(point d'accroche)
+                Transform parent = actualRoom.transform.parent.transform;
+                //Je supprime le level actuel
+                Destroy(actualRoom.gameObject);
+                //Le nouveau niveau
+                actualRoom = Instantiate(GameAreaRoom[level], groundAnchor, Quaternion.identity, actualRoom.transform.parent.transform);
+                //J'inque qu'on est passé au prochain level
+                actualLevel = level;
+            }
+
             #region InOriginal Update (not modified)
 
             _UpdateApplicationLifecycle();
@@ -101,10 +118,8 @@
                                     prefab = GameAreaRoom[level];
 
                                     isRoomCreate = true;
-
-                                    
-
-                                }else { prefab = null; }
+                                }
+                                else { prefab = null; }
                             } else { prefab = null; }
                         } else { prefab = null; }
 
@@ -117,6 +132,9 @@
 
                         // Make game object a child of the anchor.
                         gameObject.transform.parent = anchor.transform;
+
+                        actualRoom = gameObject;
+                        groundAnchor = actualRoom.transform.position;
                     }
                 }
                 //changement de phase

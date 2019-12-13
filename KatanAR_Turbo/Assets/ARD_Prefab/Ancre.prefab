@@ -4907,7 +4907,6 @@ GameObject:
   - component: {fileID: 8948713900612335787}
   - component: {fileID: 365518518982300763}
   - component: {fileID: 8507711849352981512}
-  - component: {fileID: 2790627322650608755}
   - component: {fileID: 6771585968682992329}
   m_Layer: 0
   m_Name: Cible Mesh
@@ -4990,19 +4989,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.099999994}
   m_Center: {x: -1.5, y: 3.5, z: -0.3499998}
---- !u!114 &2790627322650608755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8667524737291888846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5211d68f63fac754c8baf29a53083705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hit: 0
 --- !u!54 &6771585968682992329
 Rigidbody:
   m_ObjectHideFlags: 0
