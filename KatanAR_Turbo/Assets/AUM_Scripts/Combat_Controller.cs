@@ -15,6 +15,10 @@ public class Combat_Controller : MonoBehaviour
 
     GameObject endCombatCanvas;
 
+    GameObject weaponButtons;
+
+    GameObject[] bottesDeFoin;
+
     Text textTimer;
 
     int numberOfTargetToHit;
@@ -36,8 +40,11 @@ public class Combat_Controller : MonoBehaviour
             numberOfTargetToHit = roomController.GetComponent<Room_Controller>().levelNumberOfTarget;
 
             combatCanvas.SetActive(true);
+            weaponButtons.SetActive(true);
             endCombatCanvas.SetActive(false);
             loseCanvas.SetActive(false);
+
+            ActivateShuriken();
 
             GameObject[] targets = GameObject.FindGameObjectsWithTag("target");
 
@@ -49,6 +56,8 @@ public class Combat_Controller : MonoBehaviour
                     target.GetComponentInChildren<MeshRenderer>().enabled = false;
                 }
             }
+
+            GameObject[] bottesDeFoin = GameObject.FindGameObjectsWithTag("botteDeFoin");
         }
 
     }
@@ -56,6 +65,11 @@ public class Combat_Controller : MonoBehaviour
     private void OnDisable()
     {
         combatCanvas.SetActive(false);
+
+        foreach (GameObject botteDeFoin in bottesDeFoin)
+        {
+            botteDeFoin.SetActive(true);
+        }
     }
 
     private void Awake()
@@ -64,6 +78,10 @@ public class Combat_Controller : MonoBehaviour
         endCombatCanvas = GameObject.Find("EndCombat");
         loseCanvas = GameObject.Find("Lose");
         textTimer = GameObject.Find("TextTimer").GetComponent<Text>();
+
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
+        weaponButtons = GameObject.Find("WeaponButtons");
     }
 
     void Start()
@@ -123,12 +141,15 @@ public class Combat_Controller : MonoBehaviour
 
         foreach (GameObject target in targets)
         {
-            target.GetComponentInChildren<MeshRenderer>().enabled = true;
+            if (target.GetComponentInChildren<MeshRenderer>() != null)
+                target.GetComponentInChildren<MeshRenderer>().enabled = true;
             if(target.GetComponentInChildren<ParticleSystem>() != null)
             target.GetComponentInChildren<ParticleSystem>().enableEmission = true;
         }
 
         GameObject.Find("First Person Camera").GetComponent<Camera>().cullingMask |= 1 << LayerMask.NameToLayer("ResultTrailRenderer"); ;
+
+        weaponButtons.SetActive(false);
     }
 
     void Lose()
@@ -152,10 +173,20 @@ public class Combat_Controller : MonoBehaviour
 
     }
 
+    public void ActivateKatana()
+    {
+        GameController.ActivateGameObject(GameController.katanaController, true);
+    }
+
+    public void ActivateShuriken()
+    {
+        GameController.ActivateGameObject(GameController.shurikenController, true);
+    }
+
     public void NextLevel()
     {
         levelManager.level++;
-
+        GameController.ActivateGameObject(GameController.observationController, true);
     }
 
 }

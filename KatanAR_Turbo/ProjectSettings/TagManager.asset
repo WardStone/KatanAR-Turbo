@@ -10,6 +10,8 @@ TagManager:
   - LD limit
   - RepereCentre
   - shuriken
+  - katana
+  - botteDeFoin
   layers:
   - Default
   - TransparentFX

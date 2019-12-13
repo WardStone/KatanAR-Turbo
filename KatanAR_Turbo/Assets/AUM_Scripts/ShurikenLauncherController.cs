@@ -36,6 +36,9 @@ public class ShurikenLauncherController : MonoBehaviour
 
     public GameObject shurikenContainer = default;
 
+    GameObject katanaButton;
+
+    GameObject shurikenButton;
 
     public bool testingInUnity;
 
@@ -47,13 +50,18 @@ public class ShurikenLauncherController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameController.ActivateGameObject(GameController.katanaController, true);
+        GameController.ActivateGameObject(GameController.katanaController, false);
+
+        GameController.ActivateGameObject(katanaButton, true);
+
+        GameController.ActivateGameObject(shurikenButton, false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        katanaButton = GameObject.Find("KatanaButton");
+        shurikenButton = GameObject.Find("ShurikenButton");
     }
 
     // Update is called once per frame

@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
         menuController = GameObject.Find("Menu_Controller");
         observationController = GameObject.Find("Observation_Controller");
         combatController = GameObject.Find("Combat_Controller");
-        shurikenController = GameObject.Find("Shuriken_Controller");
+        shurikenController = GameObject.Find("Shuriken_Launcher_Controller");
         katanaController = GameObject.Find("Katana_Controller");
         resultController = GameObject.Find("Result_Controller");
 

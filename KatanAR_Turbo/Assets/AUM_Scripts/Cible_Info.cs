@@ -17,6 +17,11 @@ public class Cible_Info : MonoBehaviour
         hit = true;
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        hit = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
