@@ -26,14 +26,13 @@
         [Space (10)]
         [Header("Ajout")]
 
-        public int level = 0;
-        [SerializeField] int actualLevel = 0;
-
         public Vector3 groundAnchor = default;
         public GameObject actualRoom = default;
         public GameObject[] GameAreaRoom = default;
 
         public GameObject combatPhase = default;
+
+        GameObject levelManager;
 
         [SerializeField]
         bool isRoomCreate = false;
@@ -45,28 +44,14 @@
             // Note, Application.targetFrameRate is ignored when QualitySettings.vSyncCount != 0.
             Application.targetFrameRate = 60;
             #endregion
-        }
 
-        private void Start()
-        {
-            shurikenLauncherController = GetComponent<ShurikenLauncherController>();
-            //shurikenPhase = shurikenLauncherController.gameObject;
-            //shurikenPhase.SetActive(false);
+            levelManager = GameObject.Find("LevelManager");
+
         }
 
         public void Update()
         {
-            if (actualLevel != level)
-            {
-                //Je prend le parent(point d'accroche)
-                Transform parent = actualRoom.transform.parent.transform;
-                //Je supprime le level actuel
-                Destroy(actualRoom.gameObject);
-                //Le nouveau niveau
-                actualRoom = Instantiate(GameAreaRoom[level], groundAnchor, Quaternion.identity, actualRoom.transform.parent.transform);
-                //J'inque qu'on est passé au prochain level
-                actualLevel = level;
-            }
+           
 
             #region InOriginal Update (not modified)
 
@@ -115,7 +100,7 @@
                                 {
 
 
-                                    prefab = GameAreaRoom[level];
+                                    prefab = GameAreaRoom[0];
 
                                     isRoomCreate = true;
                                 }
@@ -137,11 +122,7 @@
                         groundAnchor = actualRoom.transform.position;
                     }
                 }
-                //changement de phase
-                else
-                {
-                    shurikenPhase.SetActive(true);
-                }
+
             }
             
             if(isRoomCreate)
@@ -150,7 +131,11 @@
             }
         }
 
-
+        private void OnDisable()
+        {
+            levelManager.GetComponent<LevelManager>().groundAnchor = groundAnchor;
+            levelManager.GetComponent<LevelManager>().actualRoom = actualRoom;
+        }
 
         #region InOriginal Fonctions (not modified)
 
@@ -224,4 +209,6 @@
         
         #endregion
     }
+
+    
 }

@@ -7,7 +7,7 @@ namespace GoogleARCore.Examples.HelloAR
     {
         Transform text = default;
         BoxCollider textCollider = default;
-        ARD_ControllerTargetCreator levelManager = default;
+        LevelManager levelManager = default;
         void Start()
         {
             Initialisation();
@@ -25,7 +25,7 @@ namespace GoogleARCore.Examples.HelloAR
         {
             text = this.transform;
             textCollider = this.GetComponent<BoxCollider>();
-            levelManager = GetComponent<ARD_ControllerTargetCreator>();
+            levelManager = GetComponent<LevelManager>();
         }
 
     }

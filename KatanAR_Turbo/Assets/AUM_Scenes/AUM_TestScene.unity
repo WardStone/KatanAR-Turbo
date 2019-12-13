@@ -166,7 +166,9 @@ MonoBehaviour:
   FirstPersonCamera: {fileID: 942873844}
   ShurikenPrefab: {fileID: 36270366072308048, guid: 533c698dae34ee84a9813f05606f53b5,
     type: 3}
-  testingInUnity: 0
+  launchSpeed: 10
+  shurikenContainer: {fileID: 0}
+  testingInUnity: 1
 --- !u!1 &158690069
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +400,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2129798723}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &185957774
 MonoBehaviour:
@@ -441,7 +443,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2129798723}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &237864559
 MonoBehaviour:
@@ -576,15 +578,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstPersonCamera: {fileID: 942873844}
-  level: 1
+  level: 0
+  actualLevel: 0
+  groundAnchor: {x: 0, y: 0, z: 0}
+  actualRoom: {fileID: 0}
   GameAreaRoom:
-  - {fileID: 4165483847871739061, guid: f54caf7ed5273044db75d791458d8d81, type: 3}
-  - {fileID: 6256876398546049003, guid: c431880aab4f1fb4f82437f9f5689664, type: 3}
-  - {fileID: 5872869584616217013, guid: 3263cfb2a052f2b489313b1df7e6b51f, type: 3}
-  - {fileID: 289884665296696754, guid: 8fa996327ab2c0f409f7edbb8a132ab3, type: 3}
-  - {fileID: 525429030025872609, guid: c7f264beb443d424eb94a8da01346bf4, type: 3}
-  - {fileID: 9082281019054065232, guid: 4ce1b4a4887f5f64e9f5b434243edcd4, type: 3}
-  shurikenLauncherController: {fileID: 0}
+  - {fileID: 7878239175826538957, guid: 3a9ba98850fba89438af31215fa3cbbf, type: 3}
+  - {fileID: 3242870495575516084, guid: c431880aab4f1fb4f82437f9f5689664, type: 3}
+  - {fileID: 7505726700577456514, guid: 3263cfb2a052f2b489313b1df7e6b51f, type: 3}
+  - {fileID: 3807776478030479329, guid: 8fa996327ab2c0f409f7edbb8a132ab3, type: 3}
+  - {fileID: 1416679913657858115, guid: c7f264beb443d424eb94a8da01346bf4, type: 3}
+  combatPhase: {fileID: 0}
   isRoomCreate: 0
 --- !u!1 &463548178
 GameObject:
@@ -616,7 +620,7 @@ Transform:
   m_Children:
   - {fileID: 15596228}
   m_Father: {fileID: 2129798723}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &463548180
 MonoBehaviour:
@@ -1030,7 +1034,7 @@ Transform:
   m_Children:
   - {fileID: 1962137853}
   m_Father: {fileID: 2129798723}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &603660320
 MonoBehaviour:
@@ -1573,7 +1577,7 @@ Transform:
   m_Children:
   - {fileID: 412521720}
   m_Father: {fileID: 2129798723}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1447218488
 MonoBehaviour:
@@ -2053,6 +2057,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1780704489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780704490}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1780704490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780704489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2129798723}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815170647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,6 +2332,8 @@ MonoBehaviour:
   FirstPersonCamera: {fileID: 0}
   ShurikenPrefab: {fileID: 36270366072308048, guid: 533c698dae34ee84a9813f05606f53b5,
     type: 3}
+  launchSpeed: 10
+  shurikenContainer: {fileID: 0}
   testingInUnity: 1
 --- !u!1 &2083503993
 GameObject:
@@ -2412,6 +2448,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1780704490}
   - {fileID: 1447218487}
   - {fileID: 603660319}
   - {fileID: 185957773}

@@ -73,7 +73,8 @@ public class Combat_Controller : MonoBehaviour
 
         foreach(GameObject target in targets)
         {
-            if(target.GetComponent<Cible_Info>().hit)
+            if(target.GetComponent<Cible_Info>() != null)
+            if (target.GetComponent<Cible_Info>().hit)
             numberOfTargetToHit -= 1;
         }
 
