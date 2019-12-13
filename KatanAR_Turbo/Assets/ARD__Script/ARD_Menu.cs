@@ -7,7 +7,7 @@ namespace GoogleARCore.Examples.HelloAR
     {
         Transform text = default;
         BoxCollider textCollider = default;
-        LevelManager levelManager = default;
+        public static LevelManager levelManager = default;
         void Start()
         {
             Initialisation();
@@ -18,6 +18,7 @@ namespace GoogleARCore.Examples.HelloAR
             if (collision.gameObject.CompareTag("shuriken"))
             {
                 levelManager.level++;
+                GameController.ActivateGameObject(GameController.observationController, true);
             }
         }
 

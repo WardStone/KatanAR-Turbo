@@ -28,8 +28,11 @@ public class Observation_Controller : MonoBehaviour
 
             foreach (GameObject target in targets)
             {
-                target.GetComponent<MeshRenderer>().enabled = true;
-                target.GetComponentInChildren<ParticleSystem>().enableEmission = true;
+                if(target.GetComponent<MeshRenderer>() != null)
+                {
+                    target.GetComponent<MeshRenderer>().enabled = true;
+                    target.GetComponentInChildren<ParticleSystem>().enableEmission = true;
+                }
             }
 
             GameObject[] shurikens = GameObject.FindGameObjectsWithTag("shuriken");

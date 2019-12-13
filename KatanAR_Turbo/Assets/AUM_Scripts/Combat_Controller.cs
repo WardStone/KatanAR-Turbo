@@ -21,6 +21,8 @@ public class Combat_Controller : MonoBehaviour
 
     int oldMask;
 
+    LevelManager levelManager = default;
+
     private void OnEnable()
     {
         if(GameController.startPassed)
@@ -41,8 +43,11 @@ public class Combat_Controller : MonoBehaviour
 
             foreach(GameObject target in targets)
             {
-                target.GetComponent<MeshRenderer>().enabled = false;
-                target.GetComponentInChildren<ParticleSystem>().enableEmission = false;
+                if (target.GetComponentInChildren<MeshRenderer>() != null)
+                {
+
+                    target.GetComponentInChildren<MeshRenderer>().enabled = false;
+                }
             }
         }
 
@@ -118,7 +123,8 @@ public class Combat_Controller : MonoBehaviour
 
         foreach (GameObject target in targets)
         {
-            target.GetComponent<MeshRenderer>().enabled = true;
+            target.GetComponentInChildren<MeshRenderer>().enabled = true;
+            if(target.GetComponentInChildren<ParticleSystem>() != null)
             target.GetComponentInChildren<ParticleSystem>().enableEmission = true;
         }
 
@@ -143,6 +149,12 @@ public class Combat_Controller : MonoBehaviour
         }
 
         GameObject.Find("First Person Camera").GetComponent<Camera>().cullingMask &= ~(1 << LayerMask.NameToLayer("ResultTrailRenderer"));
+
+    }
+
+    public void NextLevel()
+    {
+        levelManager.level++;
 
     }
 

@@ -95,7 +95,7 @@ public class ShurikenLauncherController : MonoBehaviour
 
                 if (touch.phase == TouchPhase.Ended)
                 {
-                    if (slideTimer >= 0 && touchDirection.y > 300)
+                    if (slideTimer >= 0 && touchDirection.y > 150)
                     {
                         ShurikenLaunch();
                     }
